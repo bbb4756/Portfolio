@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;500;700&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/webfontworld/welcome/WelcomeRegular.woff");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +9,7 @@
     font-family: "regular";
     font-style: normal;
     font-weight: normal;
-    src: url("../public/font/Regular.woff") format("woff");
+    src: url("https://cdn.jsdelivr.net/gh/webfontworld/welcome/WelcomeRegular.woff") format("woff");
 }
 
 * {
