@@ -14,7 +14,9 @@ const WorkCard = ({ img, name, description, onClick }) => {
                 ></img>
             </div>
             <h1 className="mt-5 text-3xl font-medium mb-10">{name ? name : "Project Name"}</h1>
-            <h2 className="text-xl opacity-70 font-regular">{description ? description : "Description"}</h2>
+            <h2 className="text-xl opacity-70" style={{ fontFamily: "regular" }}>
+                {description ? description : "Description"}
+            </h2>
         </div>
     );
 };
