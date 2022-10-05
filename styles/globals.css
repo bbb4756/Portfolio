@@ -8,7 +8,7 @@
     font-family: "regular";
     font-style: normal;
     font-weight: normal;
-    src: url("../font/Regular.woff") format("woff");
+    src: url("../public/font/Regular.woff") format("woff");
 }
 
 * {
