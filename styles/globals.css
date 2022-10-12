@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;500;700&display=swap");
-@import url("https://cdn.jsdelivr.net/gh/webfontworld/welcome/WelcomeRegular.woff");
+/* @import url("https://cdn.jsdelivr.net/gh/webfontworld/welcome/WelcomeRegular.woff"); */
+/* @import url("https://webfontworld.github.io/welcome/Welcome.css"); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
