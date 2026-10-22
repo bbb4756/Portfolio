@@ -263,7 +263,7 @@ export function AdminStudio({ login, preview }: { login: string; preview: boolea
     const version = versions[id];
     const response = await fetch(`/api/admin/content/${collection}/${id}`, { method: "PUT", headers: { "Content-Type": "application/json", ...(version ? { "If-Match": String(version) } : {}) }, body: JSON.stringify(draft) }); const body = await response.json(); setBusy(false);
     if (!response.ok) return setMessage(`Error · ${body.error ?? "Save failed. Your draft is still in this browser tab."}`);
-    setDraft(body.item); setSavedSnapshot(JSON.stringify(body.item)); setMessage(preview ? "Saved to the local QA content tree." : "Saved to PostgreSQL. Public pages read the new value on the next request."); await load(collection);
+    setDraft(body.item); setSavedSnapshot(JSON.stringify(body.item)); setMessage(preview ? "Saved to the local QA content tree." : "Saved to PostgreSQL. Public pages read the new value on the next request."); await load(collection); setVersions((current) => ({ ...current, [id]: body.version }));
   };
   const remove = async () => { if (!draft || collection === "settings" || !confirm(`Delete ${draft.name ?? draft.title ?? draft.company ?? draft.id}?`)) return; const version = versions[draft.id]; const response = await fetch(`/api/admin/content/${collection}/${draft.id}`, { method: "DELETE", headers: version ? { "If-Match": String(version) } : undefined }); const body = await response.json(); if (!response.ok) return setMessage(`Error · ${body.error ?? "Delete failed"}`); setMessage("Deleted."); await load(collection); };
   const filtered = useMemo(() => items.filter((item) => JSON.stringify(item).toLowerCase().includes(search.toLowerCase())), [items, search]);
