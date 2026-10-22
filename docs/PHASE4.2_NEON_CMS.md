@@ -92,6 +92,7 @@ GitHub Settings → Developer settings → OAuth Apps에서 Preview 전용 App�
 - Homepage URL: 고정 Netlify Preview URL
 - Authorization callback URL: `https://<preview-host>/api/auth/github/callback`
 - Netlify secret: `GITHUB_OAUTH_CLIENT_ID`, `GITHUB_OAUTH_CLIENT_SECRET`
+- `CMS_PUBLIC_ORIGIN=https://<preview-host>`
 - `CMS_ADMIN_GITHUB_LOGIN=bbb4756`
 - `CMS_ADMIN_GITHUB_ID=99451642`
 - `CMS_GITHUB_REPO=bbb4756/Portfolio`

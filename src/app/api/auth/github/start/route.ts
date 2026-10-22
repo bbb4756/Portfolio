@@ -9,7 +9,7 @@ export async function GET(request: Request) {
   const verifier = crypto.randomBytes(48).toString("base64url");
   const challenge = crypto.createHash("sha256").update(verifier).digest("base64url");
   await setOauthState({ state, verifier });
-  const origin = new URL(request.url).origin;
+  const origin = process.env.CMS_PUBLIC_ORIGIN?.replace(/\/$/, "") || new URL(request.url).origin;
   const authorize = new URL("https://github.com/login/oauth/authorize");
   authorize.searchParams.set("client_id", clientId);
   authorize.searchParams.set("redirect_uri", `${origin}/api/auth/github/callback`);
