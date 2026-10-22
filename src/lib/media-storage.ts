@@ -3,7 +3,6 @@ import {
   CopyObjectCommand,
   DeleteObjectCommand,
   GetObjectCommand,
-  HeadBucketCommand,
   HeadObjectCommand,
   PutObjectCommand,
   S3Client,
@@ -116,6 +115,7 @@ function r2Client() {
     client: new S3Client({
       region: "auto",
       endpoint: `https://${config.accountId}.r2.cloudflarestorage.com`,
+      forcePathStyle: true,
       requestChecksumCalculation: "WHEN_REQUIRED",
       credentials: { accessKeyId: config.accessKeyId, secretAccessKey: config.secretAccessKey },
     }),
@@ -218,9 +218,4 @@ export async function deleteManagedMediaObjects(item: StoredMedia) {
 
 export function mediaObjectUrl(key: string) {
   return publicUrl(key);
-}
-
-export async function verifyMediaStorageAccess() {
-  const { client, bucket } = r2Client();
-  await client.send(new HeadBucketCommand({ Bucket: bucket }));
 }
