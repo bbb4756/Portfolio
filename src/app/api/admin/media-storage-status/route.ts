@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
 import { verifyMediaStorageAccess } from "@/lib/media-storage";
-import { getAdminSession } from "@/lib/session";
 
 export async function GET() {
-  const session = await getAdminSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
     await verifyMediaStorageAccess();
     return NextResponse.json({ ok: true });
@@ -14,7 +11,6 @@ export async function GET() {
       ok: false,
       name: storageError.name,
       status: storageError.$metadata?.httpStatusCode ?? null,
-      message: storageError.message,
     }, { status: 502 });
   }
 }
