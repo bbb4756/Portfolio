@@ -47,6 +47,6 @@ export async function GET(request: Request) {
   if (!permissionResponse.ok || !["admin", "maintain", "write"].includes(permission.permission ?? "")) {
     return NextResponse.redirect(new URL("/admin?auth=permission", url.origin));
   }
-  await setAdminSession({ login: user.login, githubUserId: user.id, token: tokenData.access_token });
+  await setAdminSession({ login: user.login, githubUserId: user.id });
   return NextResponse.redirect(new URL("/admin", url.origin));
 }

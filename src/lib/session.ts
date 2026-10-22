@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import { cookies } from "next/headers";
 
-export type AdminSession = { login: string; githubUserId?: number; token: string; preview?: boolean; expiresAt?: number };
+export type AdminSession = { login: string; githubUserId?: number; preview?: boolean; expiresAt?: number };
 
 const SESSION_COOKIE = "portfolio_admin_session";
 const OAUTH_COOKIE = "portfolio_oauth_state";
@@ -37,7 +37,7 @@ function unseal<T>(value?: string): T | null {
 }
 
 export async function getAdminSession(): Promise<AdminSession | null> {
-  if (isLocalPreview()) return { login: "local-preview", token: "", preview: true };
+  if (isLocalPreview()) return { login: "local-preview", preview: true };
   const store = await cookies();
   const session = unseal<AdminSession>(store.get(SESSION_COOKIE)?.value);
   if (!session?.expiresAt || session.expiresAt <= Date.now()) return null;
