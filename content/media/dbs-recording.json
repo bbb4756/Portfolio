@@ -1,0 +1,21 @@
+{
+  "id": "dbs-recording",
+  "title": "돈방석 서비스 녹화본",
+  "description": "기존 저장소에서 보존한 저해상도 아카이브 GIF",
+  "alt": "돈방석 모바일 앱 사용 화면 녹화",
+  "kind": "gif",
+  "file": "/media/dbs.gif",
+  "poster": "/media/dbs-poster.png",
+  "originalWidth": 480,
+  "originalHeight": 270,
+  "aspectRatio": "16/9",
+  "fileSize": 1077856,
+  "order": 1,
+  "featured": false,
+  "autoplay": false,
+  "loop": true,
+  "muted": true,
+  "showOnMobile": true,
+  "showOnDesktop": true,
+  "history": []
+}

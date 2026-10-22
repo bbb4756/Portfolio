@@ -1,0 +1,20 @@
+{
+  "id": "sentry-operations",
+  "slug": "sentry-operations",
+  "title": "Sentry 기반 오류 모니터링 및 운영 환경 개선",
+  "projectIds": [],
+  "background": "",
+  "constraints": "",
+  "rootCause": "",
+  "alternatives": [],
+  "solution": "",
+  "implementation": "",
+  "verification": "",
+  "result": "",
+  "learnings": "",
+  "mediaIds": [],
+  "code": "",
+  "diagram": "",
+  "status": "draft",
+  "order": 5
+}

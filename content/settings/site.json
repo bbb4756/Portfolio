@@ -1,0 +1,14 @@
+{
+  "name": "Gyuri Kim",
+  "role": "Frontend Developer",
+  "heroIntroduction": "사용자 편의성과 고객 중심의 인터페이스를 설계하고 개선하는 개발을 추구합니다.",
+  "coreStack": ["React", "Next.js", "TypeScript", "React Native", "WebView"],
+  "resumeUrl": "",
+  "githubUrl": "https://github.com/bbb4756?tab=repositories",
+  "email": "hey.kgr981222@gmail.com",
+  "featuredProjectIds": ["dbs", "dapptunes", "donut999"],
+  "about": "다양한 프로젝트에서 팀원들과 원활한 소통을 통해 핵심 목표를 달성하고, 사용자와 팀의 관점을 존중하며 실질적인 가치를 제공하는 데 집중합니다.",
+  "contact": "프로젝트와 협업에 관한 이야기를 기다립니다.",
+  "seoTitle": "Gyuri Kim — Frontend Developer",
+  "seoDescription": "React, Next.js, React Native와 WebView 경험을 다루는 프론트엔드 개발자 포트폴리오"
+}

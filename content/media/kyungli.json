@@ -1,0 +1,21 @@
+{
+  "id": "kyungli",
+  "title": "경일 아카데미 커뮤니티 녹화본",
+  "description": "기존 저장소의 프로젝트 GIF",
+  "alt": "경일 아카데미 커뮤니티 웹 프로젝트 화면",
+  "kind": "gif",
+  "file": "/media/kyungli.gif",
+  "poster": "/media/kyungli-poster.png",
+  "originalWidth": 600,
+  "originalHeight": 338,
+  "aspectRatio": "300/169",
+  "fileSize": 2926198,
+  "order": 8,
+  "featured": false,
+  "autoplay": false,
+  "loop": true,
+  "muted": true,
+  "showOnMobile": true,
+  "showOnDesktop": true,
+  "history": []
+}

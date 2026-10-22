@@ -1,0 +1,21 @@
+{
+  "id": "dbs-event",
+  "title": "돈방석 이벤트 화면",
+  "description": "원본 GIF에서 추출한 정적 포스터",
+  "alt": "돈방석 앱 이벤트 화면",
+  "kind": "image",
+  "file": "/media/dbs-event.png",
+  "poster": "",
+  "originalWidth": 126,
+  "originalHeight": 270,
+  "aspectRatio": "7/15",
+  "fileSize": 35437,
+  "order": 4,
+  "featured": false,
+  "autoplay": false,
+  "loop": false,
+  "muted": true,
+  "showOnMobile": true,
+  "showOnDesktop": true,
+  "history": []
+}

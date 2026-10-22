@@ -1,0 +1,12 @@
+{
+  "id": "icraft",
+  "company": "아이크래프트",
+  "period": "2022.11 — 2024.06",
+  "role": "프론트엔드 개발자 · 매니저",
+  "services": [],
+  "technologies": ["React", "Next.js", "React Native"],
+  "responsibilities": [],
+  "achievements": [],
+  "projectIds": ["dbs"],
+  "order": 1
+}

@@ -1,0 +1,69 @@
+{
+  "id": "dbs",
+  "slug": "donbangseok",
+  "name": "돈방석",
+  "subtitle": "Blockchain Reward Application",
+  "oneLiner": "광고·리뷰·이벤트 참여를 리워드와 연결한 모바일 서비스",
+  "shortIntroduction": "기존 포트폴리오에 수록된 상용 모바일 애플리케이션 프로젝트입니다. 현재 서비스는 종료되었습니다.",
+  "detailedIntroduction": "사용자는 광고 시청, 리뷰 작성, 이벤트 참여를 통해 포인트를 적립하고, 지갑 주소를 통해 포인트를 주고받거나 토큰을 거래할 수 있었습니다. 현재 보유한 화면 녹화본은 저해상도 아카이브 자료로 취급합니다.",
+  "projectType": "company",
+  "platform": "hybrid-app",
+  "period": "",
+  "organization": "",
+  "teamSize": "",
+  "role": "",
+  "contribution": "",
+  "techStack": ["React Native", "WebView"],
+  "githubUrl": "",
+  "serviceUrl": "https://www.donbangseok.io/",
+  "externalLinks": [],
+  "status": "published",
+  "featured": true,
+  "showOnHome": true,
+  "order": 1,
+  "emphasis": "hero",
+  "listDescription": "상용 모바일 앱 · 저해상도 아카이브 미디어",
+  "seoTitle": "돈방석 — Gyuri Kim Portfolio",
+  "seoDescription": "돈방석 모바일 애플리케이션 프로젝트 아카이브",
+  "presentation": {
+    "platform": "hybrid-app",
+    "layout": "single-phone",
+    "featuredMediaId": "dbs-home",
+    "mediaIds": ["dbs-home", "dbs-history", "dbs-event", "dbs-recording"],
+    "frameStyle": "graphite-titanium",
+    "deviceSize": "source-led",
+    "alignment": "asymmetric",
+    "background": "charcoal",
+    "imageFit": "contain",
+    "desktopPreset": "editorial",
+    "mobilePreset": "two-up"
+  },
+  "blocks": [
+    {
+      "id": "dbs-intro",
+      "type": "text",
+      "preset": "lead",
+      "title": "Archive, not reconstruction.",
+      "body": "원본 화면을 임의로 다시 만들지 않고 실제 서비스 녹화본과 추출 포스터만 사용합니다.",
+      "emphasis": "저해상도 자료의 한계를 숨기지 않고 표시 크기와 주변 구도로 보완합니다."
+    },
+    {
+      "id": "dbs-devices",
+      "type": "device-showcase",
+      "preset": "multiple-phones",
+      "mediaIds": ["dbs-home", "dbs-history", "dbs-event"],
+      "title": "One service, three moments.",
+      "body": "홈, 적립 내역, 이벤트 화면을 Graphite + Titanium 프레임으로 구성합니다."
+    },
+    {
+      "id": "dbs-video",
+      "type": "video",
+      "preset": "contained",
+      "mediaId": "dbs-recording",
+      "caption": "사용자 요청 후에만 원본 GIF를 재생합니다."
+    }
+  ],
+  "engineeringCaseIds": [],
+  "relatedProjectIds": ["dapptunes", "donut999"],
+  "updatedAt": "2026-10-22T00:00:00.000Z"
+}
