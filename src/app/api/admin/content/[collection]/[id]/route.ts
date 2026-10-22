@@ -10,7 +10,7 @@ function isCollection(value: string): value is CollectionName {
 }
 
 function expectedVersion(request: Request) {
-  const value = request.headers.get("if-match");
+  const value = request.headers.get("x-content-version") ?? request.headers.get("if-match");
   if (!value) return undefined;
   const parsed = Number(value.replace(/^W\//, "").replaceAll('"', ""));
   if (!Number.isSafeInteger(parsed) || parsed < 1) throw new RepositoryError("Invalid content version", 400);
