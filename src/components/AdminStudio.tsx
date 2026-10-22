@@ -260,7 +260,7 @@ export function AdminStudio({ login, preview }: { login: string; preview: boolea
   const duplicate = () => { if (!draft || collection !== "projects") return; const copy = { ...structuredClone(draft), id: crypto.randomUUID(), slug: `${draft.slug}-copy`, name: `${draft.name} Copy`, status: "draft", showOnHome: false, featured: false, updatedAt: new Date().toISOString() }; setSelectedId(copy.id); setDraft(copy); setSavedSnapshot(""); };
   const save = async () => {
     if (!draft) return; setBusy(true); setMessage("");
-    const id = collection === "settings" ? "site" : selectedId || draft.id;
+    const id = collection === "settings" ? "site" : draft.id;
     const version = versions[id];
     const response = await fetch(`/api/admin/content/${collection}/${id}`, { method: "PUT", headers: { "Content-Type": "application/json", ...contentVersionHeaders(version) }, body: JSON.stringify(draft) }); const body = await response.json(); setBusy(false);
     if (!response.ok) return setMessage(`Error · ${body.error ?? "Save failed. Your draft is still in this browser tab."}`);
