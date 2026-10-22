@@ -3,6 +3,7 @@ import {
   CopyObjectCommand,
   DeleteObjectCommand,
   GetObjectCommand,
+  HeadBucketCommand,
   HeadObjectCommand,
   PutObjectCommand,
   S3Client,
@@ -217,4 +218,9 @@ export async function deleteManagedMediaObjects(item: StoredMedia) {
 
 export function mediaObjectUrl(key: string) {
   return publicUrl(key);
+}
+
+export async function verifyMediaStorageAccess() {
+  const { client, bucket } = r2Client();
+  await client.send(new HeadBucketCommand({ Bucket: bucket }));
 }
