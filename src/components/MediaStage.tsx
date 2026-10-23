@@ -23,6 +23,15 @@ function MediaAsset({ item, active = false }: { item: MediaItem; active?: boolea
   useEffect(() => {
     if (imageRef.current?.complete && imageRef.current.naturalWidth === 0) setFailed(true);
   }, [active, item.file, item.poster]);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (item.kind !== "video" || !video) return;
+    if (active) {
+      void video.play().catch(() => undefined);
+    } else {
+      video.pause();
+    }
+  }, [active, item.file, item.kind]);
   if (failed) return <div className="media-load-error" role="status">Media could not be loaded.</div>;
   if (item.kind === "video") {
     const shouldLoadSource = active || !item.poster;
