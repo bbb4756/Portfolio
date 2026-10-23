@@ -174,6 +174,11 @@ img,video{display:block;max-width:100%}
 .diagram.is-interactive svg .node:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
 .project-list-media{position:relative;display:block;min-width:0}
 .project-archive-count{position:absolute;right:18px;bottom:18px;padding:8px 10px;border:1px solid rgba(232,229,220,.28);background:rgba(7,8,8,.82);color:var(--paper);font:9px Anybody,sans-serif;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(8px)}
+.all-projects article[data-project="donbangseok"] .media-stage-restrained .media-stage-items{justify-content:center;gap:clamp(14px,2vw,26px)}
+.all-projects article[data-project="donbangseok"] .media-stage-restrained .media-stage-items>*:first-child{margin-left:0}
+.all-projects article[data-project="donbangseok"] .media-stage-restrained .phone-source-led{width:clamp(150px,12vw,188px)}
+.all-projects article[data-project="donbangseok"] .media-stage-restrained .phone-source-led:nth-child(2){transform:translateY(28px)}
+.all-projects article[data-project="donbangseok"] .media-stage-restrained .phone-source-led:nth-child(3){transform:translateY(-18px)}
 .all-projects article[data-project="early-frontend-archive"] .media-stage-restrained .media-stage-items{justify-content:center}
 .all-projects article[data-project="early-frontend-archive"] .media-stage-restrained .browser-frame{width:min(82%,760px)}
 
@@ -190,6 +195,7 @@ img,video{display:block;max-width:100%}
   .diagram-status{margin:36px 0 20px;font-size:16px}
   .all-projects article[data-project="early-frontend-archive"] .media-stage-restrained .browser-frame{width:100%}
   .project-archive-count{right:10px;bottom:10px}
+  .all-projects article[data-project="donbangseok"] .media-stage-restrained .phone-source-led{width:176px;transform:none}
 }
 
 @media(prefers-reduced-motion:reduce){
