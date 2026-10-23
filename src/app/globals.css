@@ -172,11 +172,11 @@ img,video{display:block;max-width:100%}
 /* Phase 4.3 — editorial project detail experience */
 .detail-page{--case-title-size:clamp(32px,3.4vw,48px);--case-body-size:17px;--case-section-space:clamp(88px,8vw,112px);padding-bottom:0;overflow:clip}
 .detail-page :is(h1,h2,h3,.detail-lead,.detail-introduction>p:last-child){word-break:keep-all;overflow-wrap:break-word}
-.detail-hero{min-height:clamp(460px,56svh,540px);padding:42px var(--content-gutter) 38px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto minmax(132px,1fr) auto;gap:18px;border-bottom:1px solid var(--line)}
+.detail-hero{min-height:clamp(460px,56svh,540px);padding:42px var(--content-gutter) 38px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto auto auto;align-content:space-between;gap:18px;border-bottom:1px solid var(--line)}
 .detail-hero-top{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between}
 .detail-hero-top p{margin:0}
 .detail-hero-top a{font:10px Anybody,sans-serif;letter-spacing:.09em;text-transform:uppercase;border-bottom:1px solid var(--muted);padding-bottom:4px}
-.detail-hero h1{grid-column:1/11;align-self:end;margin:28px 0 20px;font:620 clamp(80px,7vw,100px)/.9 Anybody,PlexKR,sans-serif;letter-spacing:-.055em}
+.detail-hero h1{grid-column:1/11;align-self:start;margin:0;font:620 clamp(80px,7vw,100px)/.9 Anybody,PlexKR,sans-serif;letter-spacing:-.055em}
 .detail-hero-bottom{grid-column:1/-1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px;align-items:start;border-top:1px solid var(--line);padding-top:22px}
 .detail-lead{grid-column:1/5;margin:0;max-width:580px;font-size:clamp(18px,1.5vw,22px);line-height:1.5;letter-spacing:-.015em}
 .detail-facts{grid-column:6/-1;display:grid;grid-template-columns:minmax(100px,.8fr) minmax(160px,1.35fr) minmax(260px,3fr);gap:24px;justify-content:stretch}
