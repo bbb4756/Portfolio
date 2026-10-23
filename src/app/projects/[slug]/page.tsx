@@ -49,7 +49,6 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
             </div>
           </div>
         </header>
-        {isOndaji && overview}
         <section className="detail-stage" aria-label={`${project.name} project media`}>
           <div className="detail-stage-head" aria-hidden="true">
             <span>{isOndaji ? "Product showcase" : "Selected media"}</span>
@@ -57,7 +56,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
           </div>
           <MediaStage project={project} media={media} interactive />
         </section>
-        {!isOndaji && overview}
+        {overview}
         <div className="case-study">
           {project.blocks.map((block) => <BlockRenderer key={block.id} block={block} media={media} projects={projects} projectSlug={project.slug} />)}
           {relatedCases.length > 0 && <section className="case-block related-block"><p className="eyebrow">Engineering cases</p>{relatedCases.map((item) => <Link key={item.id} href={`/engineering/${item.slug}`}>{item.title} ↗</Link>)}</section>}
