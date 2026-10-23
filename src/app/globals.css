@@ -240,6 +240,7 @@ img,video{display:block;max-width:100%}
 .lab-story-steps p{max-width:540px;margin:30px 0 0;font-size:clamp(24px,2.6vw,38px);line-height:1.35;letter-spacing:-.025em;word-break:keep-all}
 .lab-lens-grid{display:grid;grid-template-columns:minmax(420px,1.25fr) minmax(260px,.75fr);gap:clamp(40px,7vw,110px);align-items:center}
 .lab-lens-stage{--lens-x:50%;--lens-y:50%;--lens-size:0px;position:relative;min-height:720px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--line);background:#111312;touch-action:none;cursor:crosshair}
+.lab-lens-stage:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
 .lab-lens-stage>.lab-lens-phone{height:620px;width:auto}
 .lab-lens-overlay{position:absolute;inset:0;display:grid;place-items:center;clip-path:circle(var(--lens-size) at var(--lens-x) var(--lens-y));transition:clip-path .28s cubic-bezier(.22,.78,.18,1);pointer-events:none}
 .lab-lens-overlay .lab-lens-phone{height:620px;width:auto}

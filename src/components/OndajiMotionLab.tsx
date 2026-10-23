@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
 
 type LabMedia = { id: string; src: string; alt: string; width: number; height: number };
 
@@ -81,9 +81,14 @@ function MediaLens({ items }: { items: LabMedia[] }) {
     move(event);
     setLens((value) => ({ ...value, active: !value.locked, locked: !value.locked }));
   };
+  const toggleKeyboard = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    setLens((value) => ({ ...value, x: 50, y: 50, active: !value.locked, locked: !value.locked }));
+  };
   return (
     <div className="lab-lens-grid">
-      <div className="lab-lens-stage" onPointerMove={move} onPointerEnter={move} onPointerLeave={() => setLens((value) => value.locked ? value : { ...value, active: false })} onPointerDown={toggleTouch} style={{ "--lens-x": `${lens.x}%`, "--lens-y": `${lens.y}%`, "--lens-size": lens.active ? "116px" : "0px" } as CSSProperties}>
+      <div className="lab-lens-stage" role="button" tabIndex={0} aria-label="인접한 두 번째 온닫이 화면 보기" aria-pressed={lens.locked} onKeyDown={toggleKeyboard} onBlur={() => setLens((value) => ({ ...value, active: false, locked: false }))} onPointerMove={move} onPointerEnter={move} onPointerLeave={() => setLens((value) => value.locked ? value : { ...value, active: false })} onPointerDown={toggleTouch} style={{ "--lens-x": `${lens.x}%`, "--lens-y": `${lens.y}%`, "--lens-size": lens.active ? "116px" : "0px" } as CSSProperties}>
         <LabPhone item={items[0]} className="lab-lens-phone" />
         <div className="lab-lens-overlay" aria-hidden="true"><LabPhone item={items[1]} className="lab-lens-phone" /></div>
         <span className="lab-lens-ring" aria-hidden="true" />
