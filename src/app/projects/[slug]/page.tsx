@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { MediaStage } from "@/components/MediaStage";
+import { OndajiDetailMotion } from "@/components/OndajiDetailMotion";
 import { SiteHeader } from "@/components/SiteHeader";
 import { getMedia, getProjectBySlug, getPublishedEngineeringCases, getPublishedProjects } from "@/lib/content";
 
@@ -25,6 +26,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
     <>
       <SiteHeader />
       <main id="main" className="detail-page" data-project={project.slug}>
+        {project.slug === "ondaji" && <OndajiDetailMotion />}
         <header className="detail-hero">
           <div className="detail-hero-top">
             <p className="eyebrow">{String(displayIndex).padStart(2, "0")} / {String(projects.length).padStart(2, "0")} · {project.projectType} / {project.platform}</p>
@@ -54,7 +56,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
           </section>
         )}
         <div className="case-study">
-          {project.blocks.map((block) => <BlockRenderer key={block.id} block={block} media={media} projects={projects} />)}
+          {project.blocks.map((block) => <BlockRenderer key={block.id} block={block} media={media} projects={projects} interactiveArchitecture={project.slug === "ondaji"} />)}
           {relatedCases.length > 0 && <section className="case-block related-block"><p className="eyebrow">Engineering cases</p>{relatedCases.map((item) => <Link key={item.id} href={`/engineering/${item.slug}`}>{item.title} ↗</Link>)}</section>}
           {relatedProjects.length > 0 && <section className="case-block related-block"><p className="eyebrow">Related projects</p>{relatedProjects.map((item) => <Link key={item.id} href={`/projects/${item.slug}`}>{item.name} ↗</Link>)}</section>}
         </div>

@@ -140,6 +140,63 @@ img,video{display:block;max-width:100%}
   .editorial-project .media-stage-restrained.stage-device-source-led .phone-source-led{width:176px;transform:none}
 }
 
+/* Ondaji case-study motion — scoped to the approved prototype */
+.detail-page[data-project="ondaji"] :is(.detail-introduction,.case-block){position:relative}
+.detail-page[data-project="ondaji"][data-motion-ready="true"] :is(.detail-introduction,.case-block){border-bottom-color:transparent}
+.detail-page[data-project="ondaji"][data-motion-ready="true"] :is(.detail-introduction,.case-block):after{content:"";position:absolute;right:var(--content-gutter);bottom:-1px;left:var(--content-gutter);height:1px;background:var(--line);transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.2,.72,.2,1)}
+.detail-page[data-project="ondaji"][data-motion-ready="true"] :is(.detail-introduction,.case-block).has-entered:after{transform:scaleX(1)}
+.detail-page[data-project="ondaji"][data-motion-ready="true"] :is(.detail-introduction>p:last-child,.prose-block h2,.block-intro h2,.decision-block h2){clip-path:inset(0 0 100% 0);transform:translateY(16px);transition:clip-path .85s cubic-bezier(.2,.72,.2,1),transform .85s cubic-bezier(.2,.72,.2,1)}
+.detail-page[data-project="ondaji"][data-motion-ready="true"] :is(.detail-introduction,.prose-block,.device-case,.decision-block).has-entered :is(.detail-introduction>p:last-child,.prose-block h2,.block-intro h2,.decision-block h2){clip-path:inset(0);transform:translateY(0)}
+.detail-page[data-project="ondaji"] .device-case{--story-progress:0;overflow:hidden}
+.detail-page[data-project="ondaji"] .device-case .block-device{position:relative;isolation:isolate}
+.detail-page[data-project="ondaji"] .device-case .block-device:before{content:"";position:absolute;right:0;bottom:31%;left:0;height:1px;background:linear-gradient(90deg,var(--accent),var(--line));transform:scaleX(var(--story-progress));transform-origin:left;z-index:-1}
+.detail-page[data-project="ondaji"] .device-case .block-device .phone{position:relative;z-index:1;transform:translateY(calc((1 - var(--story-progress)) * 18px))}
+.detail-page[data-project="ondaji"] .device-case .block-device .phone:nth-child(2){transform:translateY(calc(30px + (1 - var(--story-progress)) * 18px))}
+.detail-page[data-project="ondaji"] .device-case .block-device .phone:nth-child(3){transform:translateY(calc(-18px + (1 - var(--story-progress)) * 18px))}
+.detail-page[data-project="ondaji"].media-is-playing .device-case .block-device:before{transform:scaleX(1)}
+.detail-page[data-project="ondaji"].media-is-playing .device-case .block-device .phone:first-child{transform:translateY(0)}
+.detail-page[data-project="ondaji"].media-is-playing .device-case .block-device .phone:nth-child(2){transform:translateY(30px)}
+.detail-page[data-project="ondaji"].media-is-playing .device-case .block-device .phone:nth-child(3){transform:translateY(-18px)}
+.interactive-diagram-shell{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,240px);gap:20px;align-items:stretch}
+.architecture-block .interactive-diagram-shell .diagram{padding:clamp(24px,4vw,54px)}
+.diagram-explorer-copy{display:flex;flex-direction:column;justify-content:flex-end;padding:26px;border:1px solid var(--line);background:#111312}
+.diagram-explorer-copy .eyebrow{margin:0 0 auto}
+.diagram-status{min-height:3.2em;margin:54px 0 24px;font-size:17px;line-height:1.6;word-break:keep-all}
+.diagram-explorer-copy button{align-self:flex-start;padding:9px 0;border:0;border-bottom:1px solid currentColor;background:none;color:var(--paper);font:10px Anybody,sans-serif;letter-spacing:.09em;text-transform:uppercase;cursor:pointer}
+.diagram-explorer-copy button:disabled{color:var(--muted);cursor:default;opacity:.55}
+.diagram.is-interactive svg .node,.diagram.is-interactive svg .flowchart-link,.diagram.is-interactive svg .edgeLabel{transition:opacity .28s ease,filter .28s ease}
+.diagram.is-interactive svg .node{cursor:pointer}
+.diagram.is-interactive svg.has-selection .node{opacity:.24}
+.diagram.is-interactive svg.has-selection .node.is-selected{opacity:1;filter:drop-shadow(0 0 8px rgba(189,255,38,.24))}
+.diagram.is-interactive svg.has-selection .flowchart-link{opacity:.12}
+.diagram.is-interactive svg.has-selection .flowchart-link.is-related-edge{opacity:1;stroke:var(--accent)!important;stroke-width:2px!important}
+.diagram.is-interactive svg.has-selection .edgeLabel{opacity:.18}
+.diagram.is-interactive svg.has-selection .edgeLabel:has(.is-related-label){opacity:1}
+.diagram.is-interactive svg .node:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+.project-list-media{position:relative;display:block;min-width:0}
+.project-archive-count{position:absolute;right:18px;bottom:18px;padding:8px 10px;border:1px solid rgba(232,229,220,.28);background:rgba(7,8,8,.82);color:var(--paper);font:9px Anybody,sans-serif;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(8px)}
+.all-projects article[data-project="early-frontend-archive"] .media-stage-restrained .media-stage-items{justify-content:center}
+.all-projects article[data-project="early-frontend-archive"] .media-stage-restrained .browser-frame{width:min(82%,760px)}
+
+@media(max-width:800px){
+  .detail-page[data-project="ondaji"][data-motion-ready="true"] :is(.detail-introduction,.case-block):after{right:16px;left:16px}
+  .detail-page[data-project="ondaji"] .device-case .block-device:before{bottom:47%}
+  .detail-page[data-project="ondaji"] .device-case .block-device .phone,.detail-page[data-project="ondaji"] .device-case .block-device .phone:nth-child(2),.detail-page[data-project="ondaji"] .device-case .block-device .phone:nth-child(3){transform:none}
+  .interactive-diagram-shell{grid-template-columns:1fr}
+  .diagram-explorer-copy{min-height:180px;padding:20px}
+  .diagram-status{margin:36px 0 20px;font-size:16px}
+  .all-projects article[data-project="early-frontend-archive"] .media-stage-restrained .browser-frame{width:100%}
+  .project-archive-count{right:10px;bottom:10px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .detail-page[data-project="ondaji"] :is(.detail-introduction>p:last-child,.prose-block h2,.block-intro h2,.decision-block h2){clip-path:none!important;transform:none!important}
+  .detail-page[data-project="ondaji"] :is(.detail-introduction,.case-block):after{transform:scaleX(1)!important;transition:none!important}
+  .detail-page[data-project="ondaji"] .device-case .block-device:before{transform:scaleX(1)!important}
+  .detail-page[data-project="ondaji"] .device-case .block-device .phone{transform:none!important}
+  .diagram.is-interactive svg *{transition:none!important}
+}
+
 @media(prefers-reduced-motion:reduce){
   .magnetic-glyph,.editorial-project-media,.editorial-project-copy{transform:none!important}
   .magnetic-pointer-field{display:none}
