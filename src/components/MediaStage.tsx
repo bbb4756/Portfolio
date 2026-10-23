@@ -84,7 +84,9 @@ export function MediaStage({ project, media, interactive = false, restrained = f
   }, [media, project.presentation.featuredMediaId, project.presentation.mediaIds]);
   const [playing, setPlaying] = useState(false);
   const expandedDesktop = ["multiple-phones", "gallery"].includes(project.presentation.layout);
-  const desktopVisible = (restrained ? items.slice(0, 1) : expandedDesktop ? items : items.filter((item) => item.showOnDesktop).slice(0, 1)).filter((item) => item.showOnDesktop);
+  const desktopCandidates = items.filter((item) => item.showOnDesktop);
+  const restrainedDesktopLimit = project.presentation.deviceSize === "source-led" ? 3 : 1;
+  const desktopVisible = restrained ? desktopCandidates.slice(0, restrainedDesktopLimit) : expandedDesktop ? desktopCandidates : desktopCandidates.slice(0, 1);
   const mobileCandidates = items.filter((item) => item.showOnMobile);
   const mobileVisible = restrained ? mobileCandidates.slice(0, 1) : project.presentation.mobilePreset === "single" ? mobileCandidates.slice(0, 1) : project.presentation.mobilePreset === "two-up" ? mobileCandidates.slice(0, 2) : mobileCandidates;
   const rendered = items.filter((item) => desktopVisible.includes(item) || mobileVisible.includes(item));
@@ -92,7 +94,7 @@ export function MediaStage({ project, media, interactive = false, restrained = f
   const phoneLayout = ["single-phone", "multiple-phones"].includes(project.presentation.layout) || ["native-app", "hybrid-app"].includes(project.presentation.platform);
   const bareLayout = project.presentation.layout === "full-bleed";
   return (
-    <div className={`media-stage media-stage-${project.presentation.layout} align-${project.presentation.alignment} stage-bg-${project.presentation.background} fit-${project.presentation.imageFit} desktop-${project.presentation.desktopPreset} mobile-${project.presentation.mobilePreset}${restrained ? " media-stage-restrained" : ""}`}>
+    <div className={`media-stage media-stage-${project.presentation.layout} stage-device-${project.presentation.deviceSize} align-${project.presentation.alignment} stage-bg-${project.presentation.background} fit-${project.presentation.imageFit} desktop-${project.presentation.desktopPreset} mobile-${project.presentation.mobilePreset}${restrained ? " media-stage-restrained" : ""}`}>
       <div className="media-stage-items">
         {rendered.map((item) => {
           const targetClass = `${desktopVisible.includes(item) ? "media-target-desktop" : ""} ${mobileVisible.includes(item) ? "media-target-mobile" : ""}`;

@@ -96,6 +96,12 @@ img,video{display:block;max-width:100%}
 .editorial-project .media-stage-browser-frame:after{content:"Browser exhibit / M2"}
 .editorial-project .media-stage-items{min-height:50vh;border-right:1px solid var(--line);border-left:1px solid var(--line)}
 .editorial-project .phone{box-shadow:0 28px 62px rgba(0,0,0,.38),0 3px 9px rgba(0,0,0,.48),inset 1px 1px 0 rgba(255,255,255,.17),inset -1px -1px 0 rgba(0,0,0,.72)}
+.editorial-project .media-stage-restrained.stage-device-source-led{min-height:56vh;padding:36px 3vw}
+.editorial-project .media-stage-restrained.stage-device-source-led .media-stage-items{min-height:42vh;justify-content:center;gap:clamp(12px,2vw,26px)}
+.editorial-project .media-stage-restrained.stage-device-source-led .media-stage-items>*:first-child{margin-left:0}
+.editorial-project .media-stage-restrained.stage-device-source-led .phone-source-led{width:clamp(150px,12vw,188px)}
+.editorial-project .media-stage-restrained.stage-device-source-led .phone-source-led:nth-child(2){transform:translateY(28px)}
+.editorial-project .media-stage-restrained.stage-device-source-led .phone-source-led:nth-child(3){transform:translateY(-18px)}
 .frame-graphite-titanium.phone{border:1px solid rgba(151,155,150,.68);border-radius:25px;background:linear-gradient(145deg,#757a77 0%,#353937 8%,#191b1a 27%,#101211 62%,#3d413f 91%,#797c78 100%)}
 .frame-graphite-titanium.phone:after{inset:2px;border-color:rgba(218,221,216,.11);border-radius:22px}
 .frame-graphite-titanium .phone-screen{border:1px solid rgba(0,0,0,.92);border-radius:19px}
@@ -129,6 +135,9 @@ img,video{display:block;max-width:100%}
   .editorial-project .media-stage{min-height:390px;padding:34px 18px}
   .editorial-project .media-stage-items{min-height:310px}
   .editorial-project .browser-frame{width:100%}
+  .editorial-project .media-stage-restrained.stage-device-source-led{min-height:390px;padding:34px 18px}
+  .editorial-project .media-stage-restrained.stage-device-source-led .media-stage-items{min-height:310px}
+  .editorial-project .media-stage-restrained.stage-device-source-led .phone-source-led{width:176px;transform:none}
 }
 
 @media(prefers-reduced-motion:reduce){
