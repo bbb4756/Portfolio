@@ -145,8 +145,6 @@ img,video{display:block;max-width:100%}
 .detail-page[data-project="ondaji"][data-motion-ready="true"] :is(.detail-introduction,.case-block){border-bottom-color:transparent}
 .detail-page[data-project="ondaji"][data-motion-ready="true"] :is(.detail-introduction,.case-block):after{content:"";position:absolute;right:var(--content-gutter);bottom:-1px;left:var(--content-gutter);height:1px;background:var(--line);transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.2,.72,.2,1)}
 .detail-page[data-project="ondaji"][data-motion-ready="true"] :is(.detail-introduction,.case-block).has-entered:after{transform:scaleX(1)}
-.detail-page[data-project="ondaji"][data-motion-ready="true"] :is(.detail-introduction>p:last-child,.prose-block h2,.block-intro h2,.decision-block h2){clip-path:inset(0 0 100% 0);transform:translateY(16px);transition:clip-path .85s cubic-bezier(.2,.72,.2,1),transform .85s cubic-bezier(.2,.72,.2,1)}
-.detail-page[data-project="ondaji"][data-motion-ready="true"] :is(.detail-introduction,.prose-block,.device-case,.decision-block).has-entered :is(.detail-introduction>p:last-child,.prose-block h2,.block-intro h2,.decision-block h2){clip-path:inset(0);transform:translateY(0)}
 .detail-page[data-project="ondaji"] .device-case{--story-progress:0;overflow:hidden}
 .detail-page[data-project="ondaji"] .device-case .block-device{position:relative;isolation:isolate}
 .detail-page[data-project="ondaji"] .device-case .block-device:before{content:"";position:absolute;right:0;bottom:31%;left:0;height:1px;background:linear-gradient(90deg,var(--accent),var(--line));transform:scaleX(var(--story-progress));transform-origin:left;z-index:-1}
@@ -195,7 +193,6 @@ img,video{display:block;max-width:100%}
 }
 
 @media(prefers-reduced-motion:reduce){
-  .detail-page[data-project="ondaji"] :is(.detail-introduction>p:last-child,.prose-block h2,.block-intro h2,.decision-block h2){clip-path:none!important;transform:none!important}
   .detail-page[data-project="ondaji"] :is(.detail-introduction,.case-block):after{transform:scaleX(1)!important;transition:none!important}
   .detail-page[data-project="ondaji"] .device-case .block-device:before{transform:scaleX(1)!important}
   .detail-page[data-project="ondaji"] .device-case .block-device .phone{transform:none!important}
