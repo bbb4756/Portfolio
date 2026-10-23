@@ -172,7 +172,7 @@ img,video{display:block;max-width:100%}
 /* Phase 4.3 — editorial project detail experience */
 .detail-page{--case-title-size:clamp(32px,3.4vw,48px);--case-body-size:17px;--case-section-space:clamp(88px,8vw,112px);padding-bottom:0;overflow:clip}
 .detail-page :is(h1,h2,h3,.detail-lead,.detail-introduction>p:last-child){word-break:keep-all;overflow-wrap:break-word}
-.detail-hero{min-height:clamp(520px,62svh,600px);padding:42px var(--content-gutter) 38px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto minmax(132px,1fr) auto;gap:18px;border-bottom:1px solid var(--line)}
+.detail-hero{min-height:clamp(460px,56svh,540px);padding:42px var(--content-gutter) 38px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto minmax(132px,1fr) auto;gap:18px;border-bottom:1px solid var(--line)}
 .detail-hero-top{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between}
 .detail-hero-top p{margin:0}
 .detail-hero-top a{font:10px Anybody,sans-serif;letter-spacing:.09em;text-transform:uppercase;border-bottom:1px solid var(--muted);padding-bottom:4px}
@@ -185,7 +185,7 @@ img,video{display:block;max-width:100%}
 .detail-facts strong{font-size:14px;font-weight:400;line-height:1.5}
 .detail-stage{margin:0 var(--content-gutter);padding:34px 0 0}
 .detail-stage-head{display:flex;justify-content:space-between;padding:0 2px 12px;color:var(--muted);font:9px Anybody,sans-serif;letter-spacing:.12em;text-transform:uppercase}
-.detail-stage .media-stage{min-height:min(78vh,820px);border:1px solid var(--line);background-color:#101211;background-image:linear-gradient(90deg,transparent calc(50% - .5px),rgba(255,255,255,.045) 50%,transparent calc(50% + .5px));padding:clamp(46px,6vw,88px)}
+.detail-stage .media-stage{min-height:min(78vh,820px);border:1px solid var(--line);background-color:#101211;background-image:linear-gradient(90deg,transparent calc(50% - .5px),rgba(255,255,255,.045) 50%,transparent calc(50% + .5px));padding:clamp(40px,5vw,72px)}
 .detail-stage .media-stage-items{max-width:1320px;margin:auto;justify-content:center}
 .detail-stage .media-stage-items>*:first-child{margin-left:0}
 .detail-stage .phone{box-shadow:0 32px 68px rgba(0,0,0,.42),0 2px 8px rgba(0,0,0,.5),inset 1px 1px 0 rgba(255,255,255,.17),inset -1px -1px 0 rgba(0,0,0,.72)}
