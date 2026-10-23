@@ -19,12 +19,18 @@ function useReducedMotion() {
 function MediaAsset({ item, active = false }: { item: MediaItem; active?: boolean }) {
   const [failed, setFailed] = useState(false);
   const imageRef = useRef<HTMLImageElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     if (imageRef.current?.complete && imageRef.current.naturalWidth === 0) setFailed(true);
   }, [active, item.file, item.poster]);
   if (failed) return <div className="media-load-error" role="status">Media could not be loaded.</div>;
   if (item.kind === "video") {
-    return <video controls={active} muted={item.muted} loop={item.loop} autoPlay={active && item.autoplay} preload={active ? "metadata" : "none"} poster={item.poster || undefined} onError={() => setFailed(true)}>{active && <source src={item.file} />}</video>;
+    const shouldLoadSource = active || !item.poster;
+    return <video ref={videoRef} aria-label={item.alt} controls={active} muted={item.muted} loop={item.loop} autoPlay={active && item.autoplay} preload={shouldLoadSource ? "metadata" : "none"} poster={item.poster || undefined} src={shouldLoadSource ? item.file : undefined} onLoadedMetadata={() => {
+      const video = videoRef.current;
+      if (!video || active || item.poster || video.currentTime > 0) return;
+      video.currentTime = Math.min(0.12, Number.isFinite(video.duration) ? video.duration / 2 : 0.12);
+    }} onError={() => setFailed(true)} />;
   }
   if (item.kind === "gif" && !active && !item.poster) return <div className="media-poster-missing">Preview on request</div>;
   const source = item.kind === "gif" && !active ? item.poster : item.file;
