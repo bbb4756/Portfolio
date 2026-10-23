@@ -102,6 +102,7 @@ export function MermaidDiagram({ source, interactive = false }: { source: string
   return (
     <div className="interactive-diagram-shell">
       <div ref={diagramRef} className="diagram is-interactive" aria-label="Interactive architecture diagram" dangerouslySetInnerHTML={{ __html: svg }} />
+      <p className="diagram-pan-hint">Swipe or drag to explore <span aria-hidden="true">↔</span></p>
       <div className="diagram-explorer-copy">
         <p className="eyebrow">Interactive architecture</p>
         <p className="diagram-status" aria-live="polite">{selection || "노드를 선택해 연결 흐름을 확인하세요."}</p>

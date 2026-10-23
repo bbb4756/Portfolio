@@ -160,9 +160,10 @@ img,video{display:block;max-width:100%}
 .interactive-diagram-shell{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,240px);gap:20px;align-items:stretch}
 .architecture-block .interactive-diagram-shell .diagram{padding:clamp(24px,4vw,54px)}
 .diagram-explorer-copy{display:flex;flex-direction:column;justify-content:flex-end;padding:26px;border:1px solid var(--line);background:#111312}
+.diagram-pan-hint{display:none}
 .diagram-explorer-copy .eyebrow{margin:0 0 auto}
 .diagram-status{min-height:3.2em;margin:54px 0 24px;font-size:17px;line-height:1.6;word-break:keep-all}
-.diagram-explorer-copy button{align-self:flex-start;padding:9px 0;border:0;border-bottom:1px solid currentColor;background:none;color:var(--paper);font:10px Anybody,sans-serif;letter-spacing:.09em;text-transform:uppercase;cursor:pointer}
+.diagram-explorer-copy button{align-self:flex-start;min-width:112px;min-height:44px;padding:9px 0;border:0;border-bottom:1px solid currentColor;background:none;color:var(--paper);font:10px Anybody,sans-serif;letter-spacing:.09em;text-align:left;text-transform:uppercase;cursor:pointer}
 .diagram-explorer-copy button:disabled{color:var(--muted);cursor:default;opacity:.55}
 .diagram.is-interactive svg .node,.diagram.is-interactive svg .flowchart-link,.diagram.is-interactive svg .edgeLabel{transition:opacity .28s ease,filter .28s ease}
 .diagram.is-interactive svg .node{cursor:pointer}
@@ -185,6 +186,8 @@ img,video{display:block;max-width:100%}
   .interactive-diagram-shell{grid-template-columns:1fr}
   .architecture-block .interactive-diagram-shell .diagram{overflow-x:auto;overscroll-behavior-inline:contain}
   .architecture-block .interactive-diagram-shell .diagram svg{min-width:620px;max-width:none}
+  .diagram-pan-hint{display:flex;align-items:center;justify-content:space-between;margin:-8px 0 0;padding:12px 2px 2px;color:var(--muted);font:9px Anybody,sans-serif;letter-spacing:.11em;text-transform:uppercase}
+  .diagram-pan-hint span{color:var(--accent);font-size:16px;letter-spacing:0}
   .diagram-explorer-copy{min-height:180px;padding:20px}
   .diagram-status{margin:36px 0 20px;font-size:16px}
   .all-projects article[data-project="early-frontend-archive"] .media-stage-restrained .browser-frame{width:100%}
