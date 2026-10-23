@@ -26,7 +26,7 @@ function MediaAsset({ item, active = false }: { item: MediaItem; active?: boolea
   if (failed) return <div className="media-load-error" role="status">Media could not be loaded.</div>;
   if (item.kind === "video") {
     const shouldLoadSource = active || !item.poster;
-    return <video ref={videoRef} aria-label={item.alt} controls={active} muted={item.muted} loop={item.loop} autoPlay={active && item.autoplay} preload={shouldLoadSource ? "metadata" : "none"} poster={item.poster || undefined} src={shouldLoadSource ? item.file : undefined} onLoadedMetadata={() => {
+    return <video ref={videoRef} aria-label={item.alt} controls={active} muted={item.muted} loop={item.loop} autoPlay={active} playsInline preload={shouldLoadSource ? "metadata" : "none"} poster={item.poster || undefined} src={shouldLoadSource ? item.file : undefined} onLoadedMetadata={() => {
       const video = videoRef.current;
       if (!video || active || item.poster || video.currentTime > 0) return;
       video.currentTime = Math.min(0.12, Number.isFinite(video.duration) ? video.duration / 2 : 0.12);
