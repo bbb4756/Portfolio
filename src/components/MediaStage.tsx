@@ -85,7 +85,8 @@ export function MediaStage({ project, media, interactive = false, restrained = f
   const [playing, setPlaying] = useState(false);
   const expandedDesktop = ["multiple-phones", "gallery"].includes(project.presentation.layout);
   const desktopCandidates = items.filter((item) => item.showOnDesktop);
-  const desktopVisible = restrained ? desktopCandidates.slice(0, 1) : expandedDesktop ? desktopCandidates : desktopCandidates.slice(0, 1);
+  const restrainedDesktopLimit = project.presentation.deviceSize === "source-led" ? 3 : 1;
+  const desktopVisible = restrained ? desktopCandidates.slice(0, restrainedDesktopLimit) : expandedDesktop ? desktopCandidates : desktopCandidates.slice(0, 1);
   const mobileCandidates = items.filter((item) => item.showOnMobile);
   const mobileVisible = restrained ? mobileCandidates.slice(0, 1) : project.presentation.mobilePreset === "single" ? mobileCandidates.slice(0, 1) : project.presentation.mobilePreset === "two-up" ? mobileCandidates.slice(0, 2) : mobileCandidates;
   const rendered = items.filter((item) => desktopVisible.includes(item) || mobileVisible.includes(item));
