@@ -22,6 +22,13 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
   const relatedCases = project.engineeringCaseIds.map((id) => engineeringCases.find((item) => item.id === id)).filter((item) => item !== undefined);
   const relatedProjects = project.relatedProjectIds.map((id) => projects.find((item) => item.id === id)).filter((item) => item !== undefined);
   const displayIndex = index >= 0 ? index + 1 : 1;
+  const isOndaji = project.slug === "ondaji";
+  const overview = project.detailedIntroduction && (
+    <section className="detail-introduction">
+      <p className="eyebrow">Overview</p>
+      <p>{project.detailedIntroduction}</p>
+    </section>
+  );
   return (
     <>
       <SiteHeader />
@@ -42,21 +49,17 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
             </div>
           </div>
         </header>
+        {isOndaji && overview}
         <section className="detail-stage" aria-label={`${project.name} project media`}>
           <div className="detail-stage-head" aria-hidden="true">
-            <span>Selected media</span>
-            <span>Actual product / M2</span>
+            <span>{isOndaji ? "Product showcase" : "Selected media"}</span>
+            <span>{isOndaji ? "Actual service screens" : "Actual product / M2"}</span>
           </div>
           <MediaStage project={project} media={media} interactive />
         </section>
-        {project.detailedIntroduction && (
-          <section className="detail-introduction">
-            <p className="eyebrow">Overview</p>
-            <p>{project.detailedIntroduction}</p>
-          </section>
-        )}
+        {!isOndaji && overview}
         <div className="case-study">
-          {project.blocks.map((block) => <BlockRenderer key={block.id} block={block} media={media} projects={projects} interactiveArchitecture={project.slug === "ondaji"} />)}
+          {project.blocks.map((block) => <BlockRenderer key={block.id} block={block} media={media} projects={projects} projectSlug={project.slug} interactiveArchitecture={isOndaji} />)}
           {relatedCases.length > 0 && <section className="case-block related-block"><p className="eyebrow">Engineering cases</p>{relatedCases.map((item) => <Link key={item.id} href={`/engineering/${item.slug}`}>{item.title} ↗</Link>)}</section>}
           {relatedProjects.length > 0 && <section className="case-block related-block"><p className="eyebrow">Related projects</p>{relatedProjects.map((item) => <Link key={item.id} href={`/projects/${item.slug}`}>{item.name} ↗</Link>)}</section>}
         </div>
