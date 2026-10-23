@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @next/next/no-img-element -- CMS previews preserve uploaded GIF and image files verbatim. */
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type Collection = "projects" | "media" | "experience" | "engineering" | "settings";
 type RecordItem = Record<string, any>;
@@ -230,23 +230,27 @@ export function AdminStudio({ login, preview }: { login: string; preview: boolea
   const [search, setSearch] = useState("");
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
+  const loadRequest = useRef(0);
   const dirty = draft ? JSON.stringify(draft) !== savedSnapshot : false;
 
   const load = useCallback(async (target: Collection = collection) => {
+    const requestId = ++loadRequest.current;
     const response = await fetch(`/api/admin/content/${target}`, { cache: "no-store" });
     const body = await response.json();
     if (!response.ok) throw new Error(body.error ?? "Load failed");
-    setItems(body.items); setVersions(body.versions ?? {});
+    let nextMedia = body.items;
     if (target !== "media") {
       const mediaResponse = await fetch("/api/admin/content/media", { cache: "no-store" });
-      const mediaBody = await mediaResponse.json(); if (mediaResponse.ok) setMedia(mediaBody.items);
-    } else setMedia(body.items);
+      const mediaBody = await mediaResponse.json(); if (mediaResponse.ok) nextMedia = mediaBody.items;
+    }
+    if (requestId !== loadRequest.current) return;
+    setItems(body.items); setVersions(body.versions ?? {}); setMedia(nextMedia);
     const first = target === "settings" ? body.items[0] : body.items.find((item: RecordItem) => item.id === selectedId) ?? body.items[0];
     setSelectedId(first?.id ?? ""); setDraft(first ? structuredClone(first) : null); setSavedSnapshot(first ? JSON.stringify(first) : "");
   }, [collection, selectedId]);
 
   // Loading a collection intentionally replaces the selected record and draft state.
-  // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { load(collection).catch((error) => setMessage(`Error · ${error.message}`)); }, [collection]);
   useEffect(() => { const warn = (event: BeforeUnloadEvent) => { if (dirty) event.preventDefault(); }; window.addEventListener("beforeunload", warn); return () => window.removeEventListener("beforeunload", warn); }, [dirty]);
   useEffect(() => {
