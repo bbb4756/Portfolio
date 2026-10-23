@@ -4,13 +4,9 @@ import { useEffect } from "react";
 
 const observedSelectors = [
   ".detail-introduction",
-  ".prose-block",
-  ".device-case",
-  ".problem-solution-block",
-  ".architecture-block",
-  ".decision-block",
-  ".metrics-block",
-  ".callout",
+  ".detail-stage",
+  ".case-study > .case-block",
+  ".project-pagination",
 ].join(",");
 
 export function OndajiDetailMotion() {
@@ -20,71 +16,42 @@ export function OndajiDetailMotion() {
 
     const sections = Array.from(root.querySelectorAll<HTMLElement>(observedSelectors));
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    root.dataset.motionReady = reducedMotion ? "reduced" : "true";
+    if (reducedMotion || !("IntersectionObserver" in window)) return;
 
-    if (reducedMotion) {
-      sections.forEach((section) => section.classList.add("has-entered"));
-      return () => { delete root.dataset.motionReady; };
+    let observer: IntersectionObserver | undefined;
+    let readyFrame = 0;
+    try {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const section = entry.target as HTMLElement;
+          section.classList.add("is-revealed");
+          observer?.unobserve(section);
+        });
+      }, { rootMargin: "0px 0px -10%", threshold: 0.12 });
+
+      sections.forEach((section) => {
+        section.classList.add("ondaji-reveal");
+        if (section.getBoundingClientRect().top < window.innerHeight * 0.9) {
+          section.classList.add("is-revealed");
+          return;
+        }
+        observer?.observe(section);
+      });
+
+      readyFrame = window.requestAnimationFrame(() => {
+        root.dataset.revealReady = "true";
+      });
+    } catch {
+      observer?.disconnect();
+      sections.forEach((section) => section.classList.remove("ondaji-reveal", "is-revealed"));
+      delete root.dataset.revealReady;
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          (entry.target as HTMLElement).classList.add("has-entered");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: "0px 0px -14%", threshold: 0.16 });
-    sections.forEach((section) => observer.observe(section));
-
-    const story = root.querySelector<HTMLElement>(".device-case");
-    let storyVisible = false;
-    let frame = 0;
-    const updateStory = () => {
-      frame = 0;
-      if (!story || !storyVisible || root.classList.contains("media-is-playing")) return;
-      const rect = story.getBoundingClientRect();
-      const travel = window.innerHeight + rect.height;
-      const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / travel));
-      story.style.setProperty("--story-progress", progress.toFixed(3));
-    };
-    const requestUpdate = () => {
-      if (!frame) frame = window.requestAnimationFrame(updateStory);
-    };
-    const storyObserver = story ? new IntersectionObserver(([entry]) => {
-      storyVisible = entry.isIntersecting;
-      requestUpdate();
-    }, { rootMargin: "20% 0px" }) : null;
-    if (story && storyObserver) storyObserver.observe(story);
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    const videos = Array.from(root.querySelectorAll<HTMLVideoElement>("video"));
-    const syncPlayback = () => {
-      root.classList.toggle("media-is-playing", videos.some((video) => !video.paused && !video.ended));
-      requestUpdate();
-    };
-    videos.forEach((video) => {
-      video.addEventListener("play", syncPlayback);
-      video.addEventListener("pause", syncPlayback);
-      video.addEventListener("ended", syncPlayback);
-    });
-
-    requestUpdate();
     return () => {
-      observer.disconnect();
-      storyObserver?.disconnect();
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-      if (frame) window.cancelAnimationFrame(frame);
-      videos.forEach((video) => {
-        video.removeEventListener("play", syncPlayback);
-        video.removeEventListener("pause", syncPlayback);
-        video.removeEventListener("ended", syncPlayback);
-      });
-      story?.style.removeProperty("--story-progress");
-      root.classList.remove("media-is-playing");
-      delete root.dataset.motionReady;
+      observer?.disconnect();
+      if (readyFrame) window.cancelAnimationFrame(readyFrame);
+      delete root.dataset.revealReady;
     };
   }, []);
 
