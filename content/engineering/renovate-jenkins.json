@@ -1,0 +1,22 @@
+{
+  "id": "renovate-jenkins",
+  "slug": "renovate-jenkins-dependency-automation",
+  "title": "Renovate–Jenkins 기반 의존성 업데이트 자동화",
+  "summary": "의존성 업데이트 PR 생성과 Build 검증을 자동화하고, Merge 및 배포 판단은 수동으로 유지하는 관리 프로세스를 구축했습니다.",
+  "technologies": ["Renovate", "Jenkins", "Docker", "CI/CD"],
+  "projectIds": [],
+  "background": "Next.js / React 메이저 업그레이드 과정에서 누적된 의존성 변경과 라이브러리 간 호환성 문제를 함께 처리해야 했습니다.\n\n업데이트 주기가 길어질수록 변경 범위와 원인 추적 비용이 증가하는 문제를 개선하기 위해 Renovate 기반 정기 업데이트 체계를 제안했습니다.",
+  "constraints": "자동화로 반복 작업을 줄이되, 영향 범위가 큰 업데이트의 Merge와 Production 배포까지 자동화해 운영 리스크를 높이지 않아야 했습니다.",
+  "rootCause": "의존성 업데이트와 Build 검증이 정기적인 흐름으로 연결되지 않아 변경이 누적됐고, 실패 원인과 호환성 문제를 한 번에 추적하는 비용이 증가했습니다.",
+  "alternatives": [],
+  "solution": "Renovate를 Jenkins Self-hosted 환경에서 실행하고 업데이트 PR 생성과 Build 검증까지만 자동화했습니다. Merge 여부와 Production 배포는 담당자의 판단으로 유지했습니다.",
+  "implementation": "**Automation Design**\n\n- Minor/Patch Dependency Grouping\n- Major Runtime/Dev Dependency 분리\n- PR 및 Branch 생성 수 제한\n- `minimumReleaseAge` 적용\n- 영향 범위가 큰 주요 패키지 자동 업데이트 제외\n\n**Build Verification**\n\n1. PR Branch Checkout\n2. `pnpm install --frozen-lockfile`\n3. Docker 및 Application Build\n4. GitHub Commit Status 등록\n5. 실패 시 Error Pattern 및 주요 로그를 PR Comment로 전달\n\nJenkins Timeout과 Concurrent Build 제한을 설정하여 자동화 작업 자체의 실행 부담도 관리했습니다.",
+  "verification": "실제 업데이트 PR 생성, Jenkins Build 상태 등록, 실패 로그 피드백, 담당자 검토 후 Merge 흐름을 운영 프로세스에 적용했습니다.",
+  "result": "- 정기 Dependency Update PR 생성 자동화\n- Jenkins 기반 Build 결과 및 오류 피드백 제공\n- 실제 업데이트 PR 생성·병합 프로세스 운영 적용\n- 반복적인 의존성 관리 작업의 수동 처리 범위 감소",
+  "learnings": "",
+  "mediaIds": [],
+  "code": "",
+  "diagram": "flowchart LR\n  A[Renovate Schedule] --> B[Update PR]\n  B --> C[Jenkins Checkout]\n  C --> D[pnpm frozen install]\n  D --> E[Docker + App Build]\n  E --> F{Result}\n  F -->|Pass| G[Commit Status]\n  F -->|Fail| H[Error Pattern + PR Comment]\n  G --> I[Manual Merge / Deploy Decision]\n  H --> I",
+  "status": "published",
+  "order": 6
+}

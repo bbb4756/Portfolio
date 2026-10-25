@@ -1,0 +1,22 @@
+{
+  "id": "react-native-rendering",
+  "slug": "react-native-rendering-performance",
+  "title": "React Native 렌더링 성능 및 레거시 구조 개선",
+  "summary": "React Native 앱의 전역 상태 관리 구조와 레거시 코드를 개선하여 초기 렌더링 시간을 약 42% 단축했습니다.",
+  "technologies": ["React Native", "Recoil", "Rendering Performance"],
+  "projectIds": ["dbs"],
+  "background": "돈방석 서비스에서 Context API에 집중된 전역 상태와 누적된 중복 코드로 인해 불필요한 Re-render 및 초기 화면 표시 지연이 발생하고 있었습니다.",
+  "constraints": "기존 서비스 동작을 유지하면서 전역 상태 구독 범위를 줄이고, 누적된 레거시 코드를 함께 정리해야 했습니다.",
+  "rootCause": "Context API에 집중된 전역 상태 구조로 필요한 상태와 무관한 컴포넌트까지 다시 렌더링됐고, 5,000줄 이상의 불필요·중복 코드가 구조 파악과 변경 비용을 높였습니다.",
+  "alternatives": [],
+  "solution": "Context API 중심 상태 관리를 Recoil 기반으로 재구성하고, 각 컴포넌트가 필요한 상태만 구독하도록 구조를 조정했습니다.",
+  "implementation": "- 5,000줄 이상의 불필요·중복 레거시 코드 제거\n- 공통 Component 및 Utility 정리\n- Context API 중심 상태 관리를 Recoil 기반으로 재구성\n- 필요한 상태만 구독하도록 컴포넌트 구조 조정\n- 코드 컨벤션 정비",
+  "verification": "변경 전후 초기 렌더링 시간을 비교해 3.3초에서 1.9초로 단축된 결과를 확인했습니다.",
+  "result": "**3.3s → 1.9s**\n\n초기 렌더링 시간을 약 **42% 개선**했습니다. 전역 상태 구독 범위와 코드 구조를 정비하여 불필요한 Re-render를 줄이고 유지보수성을 개선했습니다.",
+  "learnings": "",
+  "mediaIds": [],
+  "code": "",
+  "diagram": "",
+  "status": "published",
+  "order": 7
+}

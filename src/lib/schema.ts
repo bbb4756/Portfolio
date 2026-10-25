@@ -239,6 +239,8 @@ export const engineeringCaseSchema = z.object({
   id: z.string().min(1),
   slug: slugSchema,
   title: z.string().min(1),
+  summary: z.string().default(""),
+  technologies: z.array(z.string()).default([]),
   projectIds: z.array(z.string()).default([]),
   background: z.string().default(""),
   constraints: z.string().default(""),

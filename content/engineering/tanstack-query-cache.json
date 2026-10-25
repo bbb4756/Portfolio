@@ -1,0 +1,22 @@
+{
+  "id": "tanstack-query-cache",
+  "slug": "tanstack-query-cache-consistency",
+  "title": "TanStack Query 캐시 정합성 및 서버 상태 관리 표준화",
+  "summary": "사용자별 캐시 범위와 갱신 정책을 정비하여 계정 전환 시 발생하는 데이터 정합성 문제를 해결하고 팀 공통 관리 기준을 수립했습니다.",
+  "technologies": ["TanStack Query", "QueryKey", "Cache Strategy"],
+  "projectIds": [],
+  "background": "프로젝트 내 QueryKey 구성, Cache Invalidation, `staleTime`, `gcTime` 등 서버 상태 관리 기준이 개발자별로 달랐습니다.\n\n실제로 계정 전환 이후 이전 사용자의 약관 재동의 데이터가 캐시에 남거나, 위치 정보가 다른 사용자 상태와 혼재되는 문제가 발생했습니다.",
+  "constraints": "사용자별 데이터와 비로그인 상태를 명확히 분리하면서, 데이터 특성에 맞는 캐시 정책과 무효화 범위를 팀 공통 규칙으로 정리해야 했습니다.",
+  "rootCause": "사용자별 데이터의 QueryKey에 User Scope가 일관되게 포함되지 않았고, Invalidation·Refetch·Remove 기준도 개발자별로 달라 계정 전환 시 캐시 경계가 유지되지 않았습니다.",
+  "alternatives": [],
+  "solution": "QueryKey Factory를 도입하고 사용자별 데이터에 `userId` Scope를 적용했습니다. 비로그인 상태와 응답을 구분하는 Parameter를 명시하고, 캐시 갱신 방식별 사용 기준을 분리했습니다.",
+  "implementation": "**QueryKey**\n\n- 사용자별 데이터에 `userId` Scope 적용\n- 비로그인 상태 명시적 분리\n- 응답을 구분하는 Parameter를 QueryKey에 포함\n- QueryKey Factory 도입\n\n**Cache Management**\n\n- `invalidateQueries`, `refetchQueries`, `removeQueries` 사용 기준 수립\n- 데이터 특성에 따른 Cache Policy 분류\n- 불필요한 Server State 복제 패턴 제한\n- QueryKey 단위의 Invalidation 범위 최소화\n\n계정 전환 및 위치 정보 관련 문제에는 User Scope 분리와 Query 실행 조건 조정을 적용했습니다.",
+  "verification": "계정 전환과 위치 정보 흐름에서 사용자별 QueryKey와 실행 조건을 검증했습니다. 정리한 기준은 35페이지 분량의 자료와 기술 세미나를 통해 팀에 공유했습니다.",
+  "result": "- 계정 전환 시 캐시 정합성 문제 해결\n- 사용자별 서버 상태 관리 기준 정비\n- **35페이지 기술 문서 작성**\n- **프론트엔드 개발자 6명 대상 세미나 진행**\n- 신규 개발에 공통 컨벤션 적용",
+  "learnings": "",
+  "mediaIds": [],
+  "code": "",
+  "diagram": "flowchart LR\n  A[QueryKey Factory] --> B[User Scope]\n  B --> C{Session}\n  C -->|Signed in| D[userId]\n  C -->|Signed out| E[anonymous]\n  D --> F[Scoped Cache]\n  E --> F\n  F --> G[invalidate / refetch / remove]",
+  "status": "published",
+  "order": 5
+}

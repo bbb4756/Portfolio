@@ -1,20 +1,26 @@
 {
   "id": "next-react-upgrade",
-  "slug": "next-react-upgrade",
-  "title": "Next.js 및 React 메이저 버전 업그레이드",
+  "slug": "next-react-major-migration",
+  "title": "Next.js 및 React 메이저 버전 마이그레이션",
+  "summary": "Next.js 13.4.2에서 15, React 18에서 19로의 메이저 업그레이드를 제안하고 영향도 분석부터 운영 배포까지 수행했습니다.",
+  "technologies": ["Next.js", "React", "TypeScript", "Migration Strategy"],
   "projectIds": [],
-  "background": "",
-  "constraints": "",
-  "rootCause": "",
-  "alternatives": [],
-  "solution": "",
-  "implementation": "",
-  "verification": "",
-  "result": "",
+  "background": "기존 프로젝트는 Next.js 13.4.2와 React 18을 사용하고 있었으며, 프레임워크와 주요 의존성의 버전 격차가 증가하고 있었습니다.\n\n서비스는 App Router 기반이었지만 CSR, Query Parameter, WebView Runtime에 대한 의존도가 높았습니다. 따라서 프레임워크 버전을 변경하는 작업과 렌더링 아키텍처를 전면 개편하는 작업을 구분할 필요가 있었습니다.",
+  "constraints": "SSR 중심 구조로의 전면 개편은 별도 과제로 분리하고, 버전 전환에 필요한 호환성 확보와 실제 런타임 문제 해결에 집중했습니다.",
+  "rootCause": "실제 의존성 버전을 상향한 상태에서 Build 및 주요 Route를 검증하여 변경 범위와 호환성 문제를 확인했습니다.\n\n- Next.js 15의 비동기 `params` 및 `searchParams` 규칙\n- `useSearchParams`의 CSR Bailout 및 Prerender 검증\n- React 19의 Ref, JSX 및 Callback 타입 변경\n- Browser API 접근으로 인한 Hydration Mismatch\n- Third-party Library의 Peer Dependency 및 Runtime 호환성\n\n특히 `react-spring-bottom-sheet`는 React 19 환경의 공통 컴포넌트에서 실제 Runtime Error가 확인되어 별도 대응 대상으로 분류했습니다.",
+  "alternatives": [
+    "A. Compatibility Migration — 기존 CSR 구조 유지, 필수 호환성 문제 수정 · 3~5일, Bottom Sheet 교체 포함 6~10일",
+    "B. Partial Migration — 일부 Server/Client 경계 및 렌더링 구조 개선 · 8~12일",
+    "C. Full Migration — 데이터 조회 및 렌더링 아키텍처 전면 개편 · 최소 2주 이상"
+  ],
+  "solution": "세 가지 전략의 예상 공수와 회귀 위험을 비교한 뒤 **A. Compatibility Migration**을 채택했습니다. 기존 CSR 구조를 유지하면서 실제 서비스 영향도가 높은 호환성 문제를 우선 해결했습니다.",
+  "implementation": "- App Router API 변경 대응\n- React 19 공통 Ref 및 JSX 타입 수정\n- 주요 Third-party Dependency 정합성 조정\n- Hydration 및 Prerender 문제 수정\n- Runtime Error가 확인된 공통 컴포넌트 대응\n- 주요 Route 회귀 검증 및 운영 배포\n\n모든 경고를 일괄 수정하지 않고 Build 실패, 공통 Runtime Error, 초기 렌더링 불일치 등 실제 서비스 영향도를 기준으로 우선순위를 결정했습니다.",
+  "verification": "Next.js 15 / React 19 전환 범위에서 28개 Route를 검증하고 수정했습니다.",
+  "result": "- **122개 파일 변경**\n- **28개 Route 검증 및 수정**\n- Next.js 15 / React 19 운영 배포 완료\n- 중대한 회귀 없이 버전 전환\n- 분석 결과 및 마이그레이션 전략 팀 공유\n\n이후 Next.js 16 업그레이드도 수행했습니다. Next.js 16의 구체적인 영향 범위와 검증 결과는 별도 변경 기록의 범위이며, 위 수치는 Next.js 15 / React 19 작업에 해당합니다.",
   "learnings": "",
   "mediaIds": [],
   "code": "",
   "diagram": "",
-  "status": "draft",
-  "order": 1
+  "status": "published",
+  "order": 2
 }
