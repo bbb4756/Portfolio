@@ -44,7 +44,6 @@ export function EditorialWork({ projects, media }: { projects: Project[]; media:
       <header className="editorial-work-heading">
         <p className="eyebrow">01 / Selected Work</p>
         <h2 id="selected-work-title"><span>Selected</span><span>Work</span></h2>
-        <p>Built for use,<br />explained with evidence.</p>
       </header>
       <div className="editorial-work-list" ref={listRef}>
         {projects.map((project, index) => (
