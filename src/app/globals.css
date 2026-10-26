@@ -162,7 +162,7 @@ img,video{display:block;max-width:100%}
 .engineering-list>a:hover .engineering-list-arrow,.engineering-list>a:focus-visible .engineering-list-arrow{transform:translate(3px,-3px)}
 
 .engineering-detail{padding:0}
-.engineering-case-hero{min-height:clamp(540px,66svh,680px);padding:42px var(--content-gutter) 46px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto 1fr auto;gap:20px;border-bottom:1px solid var(--line)}
+.engineering-detail .engineering-case-hero{min-height:clamp(540px,66svh,680px);padding:42px var(--content-gutter) 46px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto 1fr auto;gap:20px;border-bottom:1px solid var(--line)}
 .engineering-case-top{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
 .engineering-case-top p{margin:0}
 .engineering-case-top a{padding-bottom:4px;border-bottom:1px solid var(--muted);font:10px Anybody,sans-serif;letter-spacing:.09em;text-transform:uppercase}
@@ -175,11 +175,12 @@ img,video{display:block;max-width:100%}
 .engineering-case-intro span{color:var(--muted);font:9px Anybody,sans-serif;letter-spacing:.12em;text-transform:uppercase}
 .engineering-case-intro div p,.engineering-case-intro div a{margin:0;font-size:13px;line-height:1.6}
 .engineering-case-body{display:flex;flex-direction:column}
-.engineering-case-section{padding:clamp(74px,7vw,104px) var(--content-gutter);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px;border-bottom:1px solid var(--line)}
-.engineering-case-section>.eyebrow{grid-column:1/3;margin:7px 0 0}
-.engineering-case-section>.engineering-richtext{grid-column:3/9}
+.engineering-detail .engineering-case-section{padding:clamp(74px,7vw,104px) var(--content-gutter);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:20px;border-bottom:1px solid var(--line)}
+.engineering-detail .engineering-case-section>.eyebrow{grid-column:1/3;margin:7px 0 0}
+.engineering-detail .engineering-case-section>.engineering-richtext{grid-column:3/9}
 .engineering-richtext{max-width:760px;font-size:17px;line-height:1.8;word-break:keep-all;overflow-wrap:break-word}
-.engineering-richtext>p{margin:0}
+.engineering-detail .engineering-richtext>p{max-width:none;margin:0;font-size:inherit}
+.engineering-detail .engineering-richtext>ul,.engineering-detail .engineering-richtext>ol{font-size:inherit}
 .engineering-richtext>p+p,.engineering-richtext>p+ul,.engineering-richtext>p+ol,.engineering-richtext>ul+p,.engineering-richtext>ol+p,.engineering-richtext>.engineering-table-wrap+p{margin-top:24px}
 .engineering-richtext ul,.engineering-richtext ol{display:grid;gap:12px;margin:0;padding-left:22px}
 .engineering-richtext li::marker{color:var(--accent)}
@@ -223,7 +224,7 @@ img,video{display:block;max-width:100%}
 
 @media(max-width:800px){
   .engineering-index-hero{min-height:580px;padding:34px 16px 42px;display:flex;flex-direction:column}
-  .engineering-index-hero h1{margin:auto 0;font-size:clamp(60px,19vw,76px);line-height:.84}
+  .engineering-index-hero h1{margin:auto 0;font-size:clamp(54px,17vw,68px);line-height:.84}
   .engineering-index-hero>p:last-child{max-width:340px;font-size:15px;line-height:1.7}
   .engineering-list{padding:0 16px 90px}
   .engineering-list>a{grid-template-columns:34px 1fr 18px;gap:14px;padding:34px 0}
@@ -234,7 +235,7 @@ img,video{display:block;max-width:100%}
   .engineering-list-main>p{margin-top:16px;font-size:14px}
   .engineering-list-result{grid-column:2/4;margin-top:10px}
   .engineering-list-arrow{grid-column:3;grid-row:1/3}
-  .engineering-case-hero{min-height:auto;padding:34px 16px 38px;display:block}
+  .engineering-detail .engineering-case-hero{min-height:auto;padding:34px 16px 38px;display:block}
   .engineering-case-top{gap:16px}
   .engineering-case-top>.eyebrow{max-width:66%;font-size:9px!important}
   .engineering-case-top>a{font-size:8px;white-space:nowrap}
@@ -243,8 +244,8 @@ img,video{display:block;max-width:100%}
   .engineering-case-intro>p{font-size:18px;line-height:1.6}
   .engineering-case-intro>div{margin-top:28px}
   .engineering-case-intro>div+div{margin-top:20px}
-  .engineering-case-section{padding:64px 16px;display:block}
-  .engineering-case-section>.eyebrow{margin:0 0 28px}
+  .engineering-detail .engineering-case-section{padding:64px 16px;display:block}
+  .engineering-detail .engineering-case-section>.eyebrow{margin:0 0 28px}
   .engineering-richtext,.engineering-section-background .engineering-richtext{font-size:16px;line-height:1.78}
   .engineering-section-result>.engineering-richtext{font-size:25px;line-height:1.5}
   .engineering-table-wrap{margin-right:-16px;border-right:0}
